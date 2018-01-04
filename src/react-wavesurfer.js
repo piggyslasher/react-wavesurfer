@@ -13,7 +13,8 @@ const EVENTS = [
   'ready',
   'scroll',
   'seek',
-  'zoom'
+  'zoom',
+  'waveform-ready',
 ];
 
 /**
