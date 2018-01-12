@@ -38,7 +38,9 @@ export default class Timeline extends Component<ITimelineProps, {}> {
   }
 
   componentWillUnmount() {
-    this.props.wavesurfer.destroyPlugin('timeline');
+    if (!this.props.wavesurfer.isDestroyed) {
+      this.props.wavesurfer.destroyPlugin('timeline');
+    }
   }
 
   /**

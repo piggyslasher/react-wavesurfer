@@ -125,7 +125,9 @@ export default class Regions extends Component<IRegionsProps, {}> {
   }
 
   componentWillUnmount() {
-    this.props.wavesurfer.destroyPlugin('regions');
+    if (!this.props.wavesurfer.isDestroyed) {
+      this.props.wavesurfer.destroyPlugin('regions');
+    }
     REGION_EVENTS.forEach(e => {
       this.props.wavesurfer.un(e);
     });

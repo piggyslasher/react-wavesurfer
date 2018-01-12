@@ -57,7 +57,9 @@ export default class Minimap extends PureComponent<IMinimapProps, {}> {
    * @memberof Minimap
    */
   componentWillUnmount(): void {
-    this.props.wavesurfer.destroyPlugin('minimap');
+    if (!this.props.wavesurfer.isDestroyed) {
+      this.props.wavesurfer.destroyPlugin('minimap');
+    }
   }
 
   /**
