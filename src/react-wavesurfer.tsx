@@ -238,7 +238,7 @@ export default class Wavesurfer extends Component<IWavesurferProps, {}> {
     // file was loaded, wave was drawn
     this._ws.on('ready', () => {
       this._ready = true;
-      this._updateProps(props);
+      this._updateProps(this.props);
       this.forceUpdate();
     });
 
