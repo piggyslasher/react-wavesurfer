@@ -28,7 +28,7 @@
   "peerDependencies": {
     "prop-types": "^15.5.10",
     "react": "^16.1.0",
-    "wavesurfer.js": "^1.1.11"
+    "wavesurfer.js": "^2.0.0"
   },
   "devDependencies": {
     "@types/react": "^16.0.22",
@@ -63,7 +63,7 @@
     "source-map-loader": "^0.2.3",
     "typescript": "^2.6.1",
     "uglifyjs-webpack-plugin": "^1.0.1",
-    "wavesurfer.js": "2.0.0-beta02",
+    "wavesurfer.js": "^2.0.0",
     "webpack": "^3.5.4",
     "webpack-dev-server": "^2.7.1",
     "webpack-merge": "^4.1.0"

@@ -5,8 +5,24 @@ const webpack = require('webpack');
 module.exports = Merge(CommonConfig, {
   devtool: 'source-map',
   externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react',
+      root: 'React'
+    },
+    'react-dom': {
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'react-dom',
+      root: 'ReactDOM'
+    },
+    'wavesurfer.js': {
+      commonjs: 'wavesurfer.js',
+      commonjs2: 'wavesurfer.js',
+      amd: 'wavesurfer.js',
+      root: 'WaveSurfer'
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
