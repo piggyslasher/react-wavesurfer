@@ -22,7 +22,8 @@ const EVENTS: string[] = [
   'ready',
   'scroll',
   'seek',
-  'zoom'
+  'zoom',
+  'waveform-ready',
 ];
 
 const propTypes = {
