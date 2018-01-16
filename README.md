@@ -4,13 +4,7 @@
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ### Wrapper component for [wavesurfer.js](http://wavesurfer-js.org/). Includes support for the timeline, minimap and regions plugins.
-
-**Note:** Since v0.8.6 react-wavesurfer no longer comes bundled with the wavesurfer files. You need to explicitely import the correct files before using the react component!
-
-**Note:** This component expects `wavesurfer.js` to be available as a global variable (`WaveSurfer`). Wavesurfer plugins need to be attached to this global variable for the react component to work. Read more about *Prerequisites and common pitfalls* at the bottom of this document.
-
-**Note:** This version does not work for the version 2 (beta) of wavesurfer.js – A version of react-wavesurfer that will work with the new version is in the making.
-
+**Note::** All hard work belongs porting to V2 goes to [https://github.com/ArTiSTiX/react-wavesurfer](ArTiSTiX/react-wavesurfer).
 **Note to contributors:** The development workflow has changed, please refer to the *Developing & contributing* section below for more info.
 
 ## Basic Usage
