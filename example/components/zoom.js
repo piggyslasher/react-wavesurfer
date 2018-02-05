@@ -6,7 +6,7 @@ class ZoomExample extends React.Component {
     super(props);
 
     this.state = {
-      audioFile: '../resources/demo.wav',
+      audioFile: '../resources/demo.mp3',
       playing: false,
       zoom: 0
     };

@@ -19,7 +19,7 @@ function ExampleParent() {
   return (
     <div className="container main-container">
       <div className="row">
-        <h1 className="col-xs-12 col-lg-2">react-wavesurfer examples</h1>
+        <h1 className="col-xs-12 col-lg-2">react-wavesurfer-v2 examples</h1>
         <div className="col-xs-12 col-lg-8 col-lg-push-1">
           <div className="row">
             <SimpleExample />

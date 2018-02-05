@@ -9,7 +9,7 @@ class SimpleExample extends React.Component {
     super(props);
 
     this.state = {
-      audioFile: '../resources/demo.wav',
+      audioFile: '../resources/demo.mp3',
       playing: false,
       pos: 0,
       volume: 0.5,
@@ -56,8 +56,8 @@ class SimpleExample extends React.Component {
     const waveOptions = {
       scrollParent: true,
       height: 140,
-      progressColor: '#6c718c',
-      waveColor: '#c4c8dc',
+      progressColor: "#6c718c",
+      waveColor: "#c4c8dc",
       normalize: true,
       barWidth: 4,
       audioRate: this.state.audioRate
@@ -88,7 +88,10 @@ class SimpleExample extends React.Component {
 
           <div className="form-group col-xs-4">
             <label htmlFor="simple-playing">Playing:</label>
-            <button onClick={this.handleTogglePlay} className="btn btn-primary btn-block">
+            <button
+              onClick={this.handleTogglePlay}
+              className="btn btn-primary btn-block"
+            >
               toggle play
             </button>
             <input
