@@ -112,7 +112,8 @@ class Wavesurfer extends Component {
     this._wavesurfer.on('ready', () => {
       this.setState({
         isReady: true,
-        pos: this.props.pos
+        pos: this.props.pos,
+        duration: this._wavesurfer.getDuration()
       });
 
       // set initial position
@@ -371,7 +372,9 @@ class Wavesurfer extends Component {
             this.wavesurferEl = c;
           }}
         />
-        {childrenWithProps}
+        <div className='waveChildren'>
+          {childrenWithProps}
+        </div>
       </div>
     );
   }

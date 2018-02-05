@@ -1,5 +1,9 @@
 import React from 'react';
 import Wavesurfer from '../../src/react-wavesurfer';
+import Minimap from '../../src/plugins/minimap';
+import Timeline from '../../src/plugins/timeline';
+import Transcript from './transcript';
+import mocks from './dialogue.mocks.json';
 
 /**
  * Simple example of a React component with a Wavesurfer
@@ -9,12 +13,14 @@ class SimpleExample extends React.Component {
     super(props);
 
     this.state = {
-      audioFile: '../resources/demo.mp3',
+      audioFile: '../resources/demo.wav',
       playing: false,
       pos: 0,
       volume: 0.5,
-      audioRate: 1
+      audioRate: 1,
+      zoom: 0
     };
+    this.handleZoom = this.handleZoom.bind(this);
     this.handleTogglePlay = this.handleTogglePlay.bind(this);
     this.handlePosChange = this.handlePosChange.bind(this);
     this.handleReady = this.handleReady.bind(this);
@@ -40,9 +46,10 @@ class SimpleExample extends React.Component {
     });
   }
 
-  handleReady() {
+  handleReady(wf) {
     this.setState({
-      pos: 5
+      pos: 0,
+      duration: wf.wavesurfer.getDuration()
     });
   }
 
@@ -52,7 +59,19 @@ class SimpleExample extends React.Component {
     });
   }
 
+  handleZoom(e) {
+    this.setState({
+      zoom: Number(e.target.value)
+    });
+  }
+
   render() {
+    const minimapOptions = {
+      height: 50,
+      waveColor: '#ddd',
+      progressColor: '#999',
+      cursorColor: '#999'
+    };
     const waveOptions = {
       scrollParent: true,
       height: 140,
@@ -62,9 +81,31 @@ class SimpleExample extends React.Component {
       barWidth: 4,
       audioRate: this.state.audioRate
     };
+    const timelineOptions = {
+      timeInterval: 0.5,
+      height: 30,
+      primaryFontColor: '#00f',
+      primaryColor: '#00f'
+    };
     return (
       <div className="example col-xs-12">
-        <h3>State & UI</h3>
+        <div className="row">
+          <div className="col-xs-1">
+            <button
+              onClick={this.handleTogglePlay}
+              className="btn btn-primary btn-block btn-circle"
+            >
+              { this.state.playing ? '❚❚' : '►' }
+            </button>
+          </div>
+          <div className="col-xs-9">
+            <strong>Recording-Kane-Abel</strong>
+            <p>Lorem Epsum Lorem Epsum</p>
+          </div>
+          <div className="col-xs-2">
+            &nbsp;
+          </div>
+        </div>
         <div className="row">
           <div className="form-group col-xs-4">
             <label htmlFor="simple-volume">Volume:</label>
@@ -78,31 +119,31 @@ class SimpleExample extends React.Component {
               onChange={this.handleVolumeChange}
               className="form-control"
             />
-            <input
+            {/* <input
               className="form-control prop-value"
               type="text"
               placeholder={String(this.state.volume)}
               readOnly
-            />
+            /> */}
           </div>
 
           <div className="form-group col-xs-4">
-            <label htmlFor="simple-playing">Playing:</label>
-            <button
-              onClick={this.handleTogglePlay}
-              className="btn btn-primary btn-block"
-            >
-              toggle play
-            </button>
+            <label htmlFor="zoom-value">Zoom:</label>
             <input
-              name="simple-playing"
-              className="form-control prop-value"
-              type="text"
-              placeholder={String(this.state.playing)}
-              readOnly
+              name="zoom-value"
+              type="range"
+              value={this.state.zoom}
+              onChange={this.handleZoom}
+              className="form-control"
             />
-          </div>
-          <div className="form-group col-xs-4">
+            {/* <input
+              className="form-control prop-value"
+              type="number"
+              placeholder={String(this.state.zoom)}
+              readOnly
+            /> */}
+        </div>
+          {/* <div className="form-group col-xs-4">
             <label htmlFor="simple-pos">Position:</label>
             <input
               name="simple-pos"
@@ -113,7 +154,7 @@ class SimpleExample extends React.Component {
               className="form-control"
             />
             <p>Should set to 5 seconds on load.</p>
-          </div>
+          </div> */}
           <div className="form-group col-xs-4">
             <label htmlFor="simple-audiorate">Audio rate:</label>
             <input
@@ -126,18 +167,25 @@ class SimpleExample extends React.Component {
               onChange={this.handleAudioRateChange}
               className="form-control"
             />
-            <p>Should set to 5 seconds on load.</p>
           </div>
         </div>
         <Wavesurfer
           volume={this.state.volume}
           pos={this.state.pos}
+          duration={this.state.duration}
           options={waveOptions}
           onPosChange={this.handlePosChange}
           audioFile={this.state.audioFile}
           playing={this.state.playing}
           onReady={this.handleReady}
-        />
+          zoom={this.state.zoom}
+        >
+          <Timeline />
+          <Minimap
+            options={minimapOptions}
+          />
+          <Transcript pos={this.state.pos} transcript={mocks} duration={this.state.duration}/>
+        </Wavesurfer>
       </div>
     );
   }

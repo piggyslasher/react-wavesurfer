@@ -19,12 +19,12 @@ function ExampleParent() {
   return (
     <div className="container main-container">
       <div className="row">
-        <h1 className="col-xs-12 col-lg-2">react-wavesurfer-v2 examples</h1>
+        <h1 className="col-xs-12 col-lg-2">TTT v2.0</h1>
         <div className="col-xs-12 col-lg-8 col-lg-push-1">
           <div className="row">
             <SimpleExample />
           </div>
-          <div className="row">
+          {/* <div className="row">
             <RegionsExample />
           </div>
           <div className="row">
@@ -44,7 +44,7 @@ function ExampleParent() {
 
           <div className="row">
             <MinimapExample />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
