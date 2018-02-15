@@ -26,8 +26,8 @@
     "url": "https://github.com/mspae/react-wavesurfer/issues"
   },
   "peerDependencies": {
-    "react": "^15.3.1",
     "prop-types": "^15.5.10",
+    "react": "^15.3.1",
     "wavesurfer.js": "^1.1.11"
   },
   "devDependencies": {
@@ -87,5 +87,10 @@
       "json"
     ],
     "testDirectoryName": "test"
+  },
+  "dependencies": {
+    "css-loader": "^0.28.9",
+    "shell-quote": "^1.6.1",
+    "style-loader": "^0.20.1"
   }
 }

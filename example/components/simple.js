@@ -1,9 +1,9 @@
-import React from 'react';
-import Wavesurfer from '../../src/react-wavesurfer';
-import Minimap from '../../src/plugins/minimap';
-import Timeline from '../../src/plugins/timeline';
-import Transcript from './transcript';
-import mocks from './dialogue.mocks.json';
+import React from "react";
+import Wavesurfer from "../../src/react-wavesurfer";
+import Minimap from "../../src/plugins/minimap";
+import Timeline from "../../src/plugins/timeline";
+import Transcript from "./transcript";
+import mocks from "./dialogue.mocks.json";
 
 /**
  * Simple example of a React component with a Wavesurfer
@@ -13,7 +13,7 @@ class SimpleExample extends React.Component {
     super(props);
 
     this.state = {
-      audioFile: '../resources/demo.wav',
+      audioFile: "../resources/demo.wav",
       playing: false,
       pos: 0,
       volume: 0.5,
@@ -26,6 +26,7 @@ class SimpleExample extends React.Component {
     this.handleReady = this.handleReady.bind(this);
     this.handleVolumeChange = this.handleVolumeChange.bind(this);
     this.handleAudioRateChange = this.handleAudioRateChange.bind(this);
+    this.updatePos = this.updatePos.bind(this);
   }
 
   handleAudioRateChange(e) {
@@ -44,6 +45,10 @@ class SimpleExample extends React.Component {
     this.setState({
       pos: e.originalArgs ? e.originalArgs[0] : +e.target.value
     });
+  }
+
+  updatePos(pos) {
+    this.setState({ pos });
   }
 
   handleReady(wf) {
@@ -68,9 +73,9 @@ class SimpleExample extends React.Component {
   render() {
     const minimapOptions = {
       height: 50,
-      waveColor: '#ddd',
-      progressColor: '#999',
-      cursorColor: '#999'
+      waveColor: "#ddd",
+      progressColor: "#999",
+      cursorColor: "#999"
     };
     const waveOptions = {
       scrollParent: true,
@@ -84,8 +89,8 @@ class SimpleExample extends React.Component {
     const timelineOptions = {
       timeInterval: 0.5,
       height: 30,
-      primaryFontColor: '#00f',
-      primaryColor: '#00f'
+      primaryFontColor: "#00f",
+      primaryColor: "#00f"
     };
     return (
       <div className="example col-xs-12">
@@ -95,16 +100,14 @@ class SimpleExample extends React.Component {
               onClick={this.handleTogglePlay}
               className="btn btn-primary btn-block btn-circle"
             >
-              { this.state.playing ? '❚❚' : '►' }
+              {this.state.playing ? "❚❚" : "►"}
             </button>
           </div>
           <div className="col-xs-9">
             <strong>Recording-Kane-Abel</strong>
             <p>Lorem Epsum Lorem Epsum</p>
           </div>
-          <div className="col-xs-2">
-            &nbsp;
-          </div>
+          <div className="col-xs-2">&nbsp;</div>
         </div>
         <div className="row">
           <div className="form-group col-xs-4">
@@ -142,7 +145,7 @@ class SimpleExample extends React.Component {
               placeholder={String(this.state.zoom)}
               readOnly
             /> */}
-        </div>
+          </div>
           {/* <div className="form-group col-xs-4">
             <label htmlFor="simple-pos">Position:</label>
             <input
@@ -181,10 +184,13 @@ class SimpleExample extends React.Component {
           zoom={this.state.zoom}
         >
           <Timeline />
-          <Minimap
-            options={minimapOptions}
+          <Minimap options={minimapOptions} />
+          <Transcript
+            pos={this.state.pos}
+            transcript={mocks}
+            duration={this.state.duration}
+            handleSubtitleClick={this.updatePos}
           />
-          <Transcript pos={this.state.pos} transcript={mocks} duration={this.state.duration}/>
         </Wavesurfer>
       </div>
     );
