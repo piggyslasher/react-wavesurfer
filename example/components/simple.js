@@ -13,7 +13,7 @@ class SimpleExample extends React.Component {
     super(props);
 
     this.state = {
-      audioFile: "../resources/demo.wav",
+      audioFile: '/audio?eventID=fc906340-e6e9-cd39-bf32-991d122014f7',
       playing: false,
       pos: 0,
       volume: 0.5,
@@ -185,12 +185,12 @@ class SimpleExample extends React.Component {
         >
           <Timeline />
           <Minimap options={minimapOptions} />
-          <Transcript
+          {/* <Transcript
             pos={this.state.pos}
             transcript={mocks}
             duration={this.state.duration}
             handleSubtitleClick={this.updatePos}
-          />
+          /> */}
         </Wavesurfer>
       </div>
     );

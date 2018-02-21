@@ -24,10 +24,10 @@ function ExampleParent() {
           <div className="row">
             <SimpleExample />
           </div>
-          {<div className="row">
+          { /* <div className="row">
             <RegionsExample />
           </div>
-          /* <div className="row">
+          <div className="row">
             <ZoomExample />
           </div>
           <div className="row">

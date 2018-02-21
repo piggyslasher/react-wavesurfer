@@ -189,12 +189,6 @@ class SimpleExample extends React.Component {
           <Minimap
             options={minimapOptions}
           />
-          <Transcript
-            pos={this.state.pos}
-            transcript={mocks}
-            duration={this.state.duration}
-            handleSubtitleClick={this.updatePos}
-          />
         </Wavesurfer>
       </div>
     );
