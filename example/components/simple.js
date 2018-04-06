@@ -13,12 +13,14 @@ class SimpleExample extends React.Component {
     super(props);
 
     this.state = {
-      audioFile: '/audio?eventID=fc906340-e6e9-cd39-bf32-991d122014f7',
+      // audioFile: '/audio?eventID=fc906340-e6e9-cd39-bf32-991d122014f7',
+      // audioFile: '../../resources/demo.mp3',
+      audioFile: null,
       playing: false,
       pos: 0,
       volume: 0.5,
       audioRate: 1,
-      zoom: 0
+      zoom: 0,
     };
     this.handleZoom = this.handleZoom.bind(this);
     this.handleTogglePlay = this.handleTogglePlay.bind(this);
@@ -27,6 +29,7 @@ class SimpleExample extends React.Component {
     this.handleVolumeChange = this.handleVolumeChange.bind(this);
     this.handleAudioRateChange = this.handleAudioRateChange.bind(this);
     this.updatePos = this.updatePos.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleAudioRateChange(e) {
@@ -70,7 +73,7 @@ class SimpleExample extends React.Component {
     });
   }
 
-  render() {
+  renderWavesurfer() {
     const minimapOptions = {
       height: 50,
       waveColor: "#ddd",
@@ -92,6 +95,7 @@ class SimpleExample extends React.Component {
       primaryFontColor: "#00f",
       primaryColor: "#00f"
     };
+
     return (
       <div className="example col-xs-12">
         <div className="row">
@@ -185,13 +189,50 @@ class SimpleExample extends React.Component {
         >
           <Timeline />
           <Minimap options={minimapOptions} />
-          {/* <Transcript
+          <Transcript
             pos={this.state.pos}
             transcript={mocks}
             duration={this.state.duration}
             handleSubtitleClick={this.updatePos}
-          /> */}
+            show={location.search.substring(1).split('=')[0] === 'transcripts'}
+          />
         </Wavesurfer>
+      </div>
+    );
+  }
+
+  onSubmit(evt) {
+    const val = this.inputEl.value;
+    evt.preventDefault();
+    this.setState({ audioFile: val });
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="row">
+          <div className="col-xs-12">
+            <form className="form-inline" onSubmit={this.onSubmit}>
+              <div className="form-group mb-2">
+                <label htmlFor="staticEmail2" className="sr-only">Email</label>
+              </div>
+              <div className="form-group">
+                <label htmlFor="inputPassword2" className="sr-only">Password</label>
+                <input
+                  type="text"
+                  name="eventID"
+                  placeholder="Please enter an eventID"
+                  className="form-control"
+                  aria-describedby="basic-addon2"
+                  ref={(el) => this.inputEl = el}
+                />
+              </div>
+              <button className="btn btn-primary mb-2">Get audio</button>
+            </form>
+          </div>
+        </div>
+
+        { this.state.audioFile && this.renderWavesurfer() }
       </div>
     );
   }

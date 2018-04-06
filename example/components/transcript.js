@@ -3,6 +3,8 @@ import './style.css'
 
 export default class Transcipt extends Component {
   render() {
+    if (!this.props.show) return null;
+
     const pip = startTime => {
       const styles = {
         left: `${startTime / this.props.duration * 100}%`
