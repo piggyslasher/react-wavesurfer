@@ -11,7 +11,7 @@ module.exports = Merge(CommonConfig, {
     }
   },
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, '../dist'),
     filename: 'bundle.js',
     publicPath: '/src/'
   },

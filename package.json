@@ -14,6 +14,7 @@
     "build:plugins": "./node_modules/.bin/webpack --progress --colors --config build-config/webpack.prod.plugins.js",
     "build:plugins.min": "./node_modules/.bin/webpack --progress --colors --config build-config/webpack.prod.plugins.min.js",
     "build": "npm-run-all --parallel build:main build:main.min build:plugins build:plugins.min update-changelog",
+    "build:bundle": "./node_modules/.bin/webpack --progress --colors --config build-config/webpack.dev.js",
     "prepublish": "npm run build"
   },
   "author": "Martin Spencer <mail@martinspencer.de>",
